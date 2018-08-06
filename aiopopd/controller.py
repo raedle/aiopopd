@@ -10,7 +10,7 @@ class Controller:
     def __init__(self, handler, loop=None, hostname=None, port=1100, *,
                  ready_timeout=1.0, ssl_context=None, setuid=False):
         self.handler = handler
-        self.hostname = '::1' if hostname is None else hostname
+        self.hostname = '127.0.0.1' if hostname is None else hostname
         self.port = port
         self.ssl_context = ssl_context
         self.loop = asyncio.new_event_loop() if loop is None else loop
