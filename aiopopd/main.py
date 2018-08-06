@@ -10,6 +10,7 @@ from aiopopd.controller import Controller
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-H', '--imap-hostname', required=True)
+parser.add_argument('-b', '--bind-hostname', default='::1')
 parser.add_argument('-p', '--imap-port', required=True, type=int)
 parser.add_argument('-s', '--imap-ssl', action='store_true')
 parser.add_argument('-P', '--listen-port', required=True, type=int)
@@ -75,7 +76,7 @@ def main():
                                      args.imap_port,
                                      args.imap_ssl))
 
-    controller = Controller(None, port=args.listen_port,
+    controller = Controller(None, hostname=args.bind_hostname, port=args.listen_port,
                             ssl_context=ssl_context, setuid=args.setuid)
     controller.factory = factory
     controller.loop.set_debug(enabled=True)
